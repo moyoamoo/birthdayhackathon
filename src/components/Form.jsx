@@ -27,7 +27,9 @@ export const Form = () => {
 
   const handleClick = (e) => {
     if (e.target.className === "product") {
+      console.log(e.target.id);
       if (formDetails["products"].includes(e.target.id)) {
+        console.log("eeee");
         const indexOf = formDetails.products.findIndex(
           (product) => product === e.target.id
         );
@@ -36,6 +38,7 @@ export const Form = () => {
         setFormDetails({ ...formDetails, products: _products });
         return;
       } else {
+        console.log("here");
         const _products = formDetails.products;
         _products.push(e.target.id);
         setFormDetails({ ...formDetails, products: _products });
@@ -142,56 +145,43 @@ export const Form = () => {
               onClick={handleClick}
               className={menVisible ? "hidden visible" : "hidden"}
             >
-              <div>
-                <img
-                  src="../../perfume-spray.png"
-                  alt="perfume bottle"
-                  className="icon"
-                />
-                <p className="product" id="perfumeMen">
-                  Perfume
-                </p>
-              </div>
-              <div>
-                <img src="../../sports.png" alt="sports" className="icon" />
-                <p className="product" id="sports">
-                  Sports
-                </p>
-              </div>
-              <div>
-                <img src="../../laughing.png" alt="funny" className="icon" />
-                <p className="product" id="funny">
-                  Funny
-                </p>
-              </div>
-              <div>
-                <img src="../../lego.png" alt="lego" className="icon" />
-                <p className="product" id="collectables">
-                  Toy collectables
-                </p>
-              </div>
-              <div>
-                <img src="../../wallet.png" alt="wallet" className="icon" />
-                <p className="product" id="wallets">
-                  Wallets
-                </p>
-              </div>
-              <div>
-                <img src="../../fashion.png" alt="fashion" className="icon" />
-                <p className="product" id="clothes">
-                  Clothes
-                </p>
-              </div>
-              <div>
-                <img
-                  src="../../data-management.png"
-                  alt="tech"
-                  className="icon"
-                />
-                <p className="product" id="tech">
-                  Tech
-                </p>
-              </div>
+              <img
+                src="../../perfume-spray.png"
+                alt="perfume bottle"
+                className="icon"
+              />
+              <p className="product" id="perfumeMen"  onClick={addSelected} >
+                Perfume
+              </p>
+              <img src="../../sports.png" alt="sports" className="icon" />
+              <p className="product" id="sports" onClick={addSelected} >
+                Sports
+              </p>
+              <img src="../../laughing.png" alt="funny" className="icon" />
+              <p className="product" id="funny" onClick={addSelected} >
+                Funny
+              </p>
+              <img src="../../lego.png" alt="lego" className="icon" />
+              <p className="product" id="collectables" onClick={addSelected} >
+                Toy collectables
+              </p>
+              <img src="../../wallet.png" alt="wallet" className="icon" />
+              <p className="product" id="wallets"  onClick={addSelected} >
+                Wallets
+              </p>
+              <img src="../../fashion.png" alt="fashion" className="icon"/>
+              <p className="product" id="clothes" onClick={addSelected} >
+                Clothes
+              </p>
+
+              <img
+                src="../../data-management.png"
+                alt="tech"
+                className="icon"
+              />
+              <p className="product" id="tech" onClick={addSelected} >
+                Tech
+              </p>
             </div>
           </div>
           <div onClick={showProducts}>
@@ -200,56 +190,44 @@ export const Form = () => {
               onClick={handleClick}
               className={womenVisible ? "hidden visible" : "hidden"}
             >
-              <div>
-                <img
-                  src="../../perfume-spray.png"
-                  alt="perfume bottle"
-                  className="icon"
-                />
-                <p className="product" id="perfumeWomen">
-                  Perfume
-                </p>
-              </div>
-              <div>
-                <img src="../../flower.png" alt="flowers" className="icon" />
-                <p className="product" id="flowers">
-                  Flowers
-                </p>
-              </div>
-              <div>
-                <img src="../../cosmetics.png" alt="flowers" className="icon" />
-                <p className="product" id="makeUp">
-                  Makeup
-                </p>
-              </div>
-              <div>
-                <img src="../../laughing.png" alt="laughing" className="icon" />
-                <p className="product" id="funnyWomen">
-                  Funny
-                </p>
-              </div>
-              <div>
-                <img src="../../handbag.png" alt="handbag" className="icon" />
-                <p className="product" id="handbags">
-                  Handbags
-                </p>
-              </div>
-              <div>
-                <img
-                  src="../../high-heels.png"
-                  alt="flowers"
-                  className="icon"
-                />
-                <p className="product" id="shoes">
-                  Shoes
-                </p>
-              </div>
-              <div>
-                <img src="../../jewelry.png" alt="jewellery" className="icon" />
-                <p className="product" id="jewellery">
-                  Jewellery
-                </p>
-              </div>
+              <img
+                src="../../perfume-spray.png"
+                alt="perfume bottle"
+                className="icon"
+              />
+              <p className="product" id="perfumeWomen" onClick={addSelected} >
+                Perfume
+              </p>
+
+              <img src="../../flower.png" alt="flowers" className="icon" />
+              <p className="product" id="flowers" onClick={addSelected} >
+                Flowers
+              </p>
+
+              <img src="../../cosmetics.png" alt="flowers" className="icon" />
+              <p className="product" id="makeUp" onClick={addSelected} >
+                Makeup
+              </p>
+
+              <img src="../../laughing.png" alt="laughing" className="icon" />
+              <p className="product" id="funnyWomen" onClick={addSelected} >
+                Funny
+              </p>
+
+              <img src="../../handbag.png" alt="handbag" className="icon" />
+              <p className="product" id="handbags" onClick={addSelected} >
+                Handbags
+              </p>
+
+              <img src="../../high-heels.png" alt="flowers" className="icon" />
+              <p className="product" id="shoes" onClick={addSelected} >
+                Shoes
+              </p>
+
+              <img src="../../jewelry.png" alt="jewellery" className="icon" />
+              <p className="product" id="jewellery" onClick={addSelected} >
+                Jewellery
+              </p>
             </div>
           </div>
         </div>

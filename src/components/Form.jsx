@@ -3,6 +3,7 @@ import "../css/form.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addBirthday } from "../redux/birthdaySlice";
+import { useNavigate } from "react-router-dom";
 
 export const Form = () => {
   const [formDetails, setFormDetails] = useState({
@@ -14,17 +15,13 @@ export const Form = () => {
     products: [],
   });
 
-  const [menVisible, setMenVisible] = useState(false)
-  const [womenVisible, setWomenVisible] = useState(false)
+  const [menVisible, setMenVisible] = useState(false);
+  const [womenVisible, setWomenVisible] = useState(false);
 
   const dispatch = useDispatch();
+  const redirect = useNavigate();
 
   const handleChange = (e) => {
-    if (e.target.name === "bdayDate") {
-      const unixDate = stringToUnix(e.target.value)
-      setFormDetails({...formDetails, bdayDate: unixDate});
-      return;
-    }
     setFormDetails({ ...formDetails, [e.target.name]: e.target.value });
   };
 
@@ -40,14 +37,19 @@ export const Form = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    if (e.target.name === "bdayDate") {
+      const unixDate = stringToUnix(e.target.value);
+      setFormDetails({ ...formDetails, bdayDate: unixDate });
+      return;
+    }
     try {
       // await axios.post(
       //   "http://localhost:6001/add_birthday",
       //   { formDetails },
       // );
       dispatch(addBirthday(formDetails));
-      // redirect("/dashboard");
+      redirect("/dashboard");
     } catch (e) {
       console.log(e);
     }
@@ -56,21 +58,19 @@ export const Form = () => {
   const stringToUnix = (date) => {
     let _date = date.split("-");
     _date = new Date(_date[0], _date[1] - 1, _date[2]);
-  
+
     return _date.getTime();
   };
-  
 
   const showProducts = (e) => {
     if (e.target.innerText === "Men") {
       setMenVisible(true);
-      setWomenVisible(false)
-    }
-    else if (e.target.innerText === "Women") {
+      setWomenVisible(false);
+    } else if (e.target.innerText === "Women") {
       setWomenVisible(true);
-      setMenVisible(false)
+      setMenVisible(false);
     }
-  }
+  };
 
   return (
     <div className="form">
@@ -133,7 +133,10 @@ export const Form = () => {
         <div className="productListContainer">
           <div onClick={showProducts}>
             <h2>Men</h2>
-            <div onClick={handleClick} className={menVisible ? "hidden visible" : "hidden"}>
+            <div
+              onClick={handleClick}
+              className={menVisible ? "hidden visible" : "hidden"}
+            >
               <p className="product" id="perfumeMen">
                 Perfume
               </p>
@@ -162,7 +165,10 @@ export const Form = () => {
           </div>
           <div onClick={showProducts}>
             <h2>Women</h2>
-            <div onClick={handleClick} className={womenVisible ? "hidden visible" : "hidden"}>
+            <div
+              onClick={handleClick}
+              className={womenVisible ? "hidden visible" : "hidden"}
+            >
               <p className="product" id="perfumeWomen">
                 Perfume
               </p>

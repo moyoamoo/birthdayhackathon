@@ -37,18 +37,15 @@ export const Form = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    if (e.target.name === "bdayDate") {
-      const unixDate = stringToUnix(e.target.value);
-      setFormDetails({ ...formDetails, bdayDate: unixDate });
-      return;
-    }
+  const handleSubmit = async () => {
+    const unixDate = stringToUnix(formDetails.bdayDate);
+
     try {
       // await axios.post(
       //   "http://localhost:6001/add_birthday",
       //   { formDetails },
       // );
-      dispatch(addBirthday(formDetails));
+      dispatch(addBirthday({ ...formDetails, bdayDate: unixDate }));
       redirect("/dashboard");
     } catch (e) {
       console.log(e);
@@ -58,7 +55,6 @@ export const Form = () => {
   const stringToUnix = (date) => {
     let _date = date.split("-");
     _date = new Date(_date[0], _date[1] - 1, _date[2]);
-
     return _date.getTime();
   };
 
@@ -97,7 +93,6 @@ export const Form = () => {
         <select
           id="emailFrequency"
           name="emailFrequency"
-          value={formDetails.emailFrequency}
           defaultValue={formDetails.emailFrequency}
           onChange={handleChange}
         >

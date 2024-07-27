@@ -9,8 +9,8 @@ export default function App() {
   return (
     <>
       <main>
-    <Form/>
         <Routes>
+          <Route path="/" element={<Form />} />
           <Route path="/products" element={<RecommendedProducts />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>

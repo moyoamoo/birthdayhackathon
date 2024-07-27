@@ -23,33 +23,33 @@ const RecommendedProducts = () => {
       const { data } = await axios.post(`http://localhost:6001/products`, {
         categories: categories,
       });
-      console.log(data.data);
       setProducts(data.data);
     } catch (e) {
       console.log(e);
     }
   };
 
-  console.log(products);
-
   if (!products) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div className="productsContainer">
-      {products.map((product, index) => {
-        const { name, url, image, price } = product;
-        return (
-          <ProductItem
-            key={index}
-            name={name}
-            src={image}
-            price={price}
-            url={url}
-          />
-        );
-      })}
+    <div>
+      <h2>Here are some gifts they might like:</h2>
+      <div className="productsContainer">
+        {products.map((product, index) => {
+          const { name, url, image, price } = product;
+          return (
+            <ProductItem
+              key={index}
+              name={name}
+              src={image}
+              price={price}
+              url={url}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

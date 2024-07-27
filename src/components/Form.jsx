@@ -28,6 +28,12 @@ export const Form = () => {
   const handleClick = (e) => {
     if (e.target.className === "product") {
       if (formDetails["products"].includes(e.target.id)) {
+        const indexOf = formDetails.products.findIndex(
+          (product) => product === e.target.id
+        );
+        const _products = [...formDetails.products];
+        _products.splice(indexOf, 1);
+        setFormDetails({ ...formDetails, products: _products });
         return;
       } else {
         const _products = formDetails.products;
@@ -50,6 +56,10 @@ export const Form = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const addSelected = (e) => {
+    e.target.classList.toggle("selected");
   };
 
   const stringToUnix = (date) => {

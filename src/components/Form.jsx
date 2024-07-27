@@ -63,10 +63,10 @@ export const Form = () => {
   };
 
   const showProducts = (e) => {
-    if (e.target.innerText === "Men") {
+    if (e.target.innerText === "Men ▾") {
       setMenVisible(true);
       setWomenVisible(false);
-    } else if (e.target.innerText === "Women") {
+    } else if (e.target.innerText === "Women ▾") {
       setWomenVisible(true);
       setMenVisible(false);
     }
@@ -132,7 +132,7 @@ export const Form = () => {
         <p>What products would your partner like?</p>
         <div className="productListContainer">
           <div onClick={showProducts}>
-            <h2>Men</h2>
+            <h2>Men &#9662;</h2>
             <div
               onClick={handleClick}
               className={menVisible ? "hidden visible" : "hidden"}
@@ -164,7 +164,7 @@ export const Form = () => {
             </div>
           </div>
           <div onClick={showProducts}>
-            <h2>Women</h2>
+            <h2>Women &#9662;</h2>
             <div
               onClick={handleClick}
               className={womenVisible ? "hidden visible" : "hidden"}
@@ -195,8 +195,8 @@ export const Form = () => {
               </p>
             </div>
           </div>
-          <button onClick={handleSubmit}>submit</button>
         </div>
+        <button onClick={handleSubmit}>submit</button>
       </div>
     </div>
   );

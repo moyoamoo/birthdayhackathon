@@ -16,6 +16,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+}
+
+.productListContainer h2 {
+  cursor: pointer;
 }
 
 .hidden {
@@ -24,4 +29,8 @@
 
 .visible {
   display: block;
+}
+
+.product {
+  cursor: pointer;
 }

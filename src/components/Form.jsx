@@ -28,6 +28,12 @@ export const Form = () => {
   const handleClick = (e) => {
     if (e.target.className === "product") {
       if (formDetails["products"].includes(e.target.id)) {
+        const indexOf = formDetails.products.findIndex(
+          (product) => product === e.target.id
+        );
+        const _products = [...formDetails.products];
+        _products.splice(indexOf, 1);
+        setFormDetails({ ...formDetails, products: _products });
         return;
       } else {
         const _products = formDetails.products;
@@ -50,6 +56,10 @@ export const Form = () => {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const addSelected = (e) => {
+    e.target.classList.toggle("selected");
   };
 
   const stringToUnix = (date) => {
@@ -138,7 +148,7 @@ export const Form = () => {
               <p className="product" id="sports">
                 Sports
               </p>
-              <p className="product" id="funnyMen">
+              <p className="product" id="funny">
                 Funny
               </p>
               <p className="product" id="toyCollectables">
@@ -152,9 +162,6 @@ export const Form = () => {
               </p>
               <p className="product" id="tech">
                 Tech
-              </p>
-              <p className="product" id="plantsMen">
-                Plants
               </p>
             </div>
           </div>
@@ -173,7 +180,7 @@ export const Form = () => {
               <p className="product" id="makeUp">
                 Makeup
               </p>
-              <p className="product" id="funnyWomen">
+              <p className="product" id="funny">
                 Funny
               </p>
               <p className="product" id="handbags">
@@ -184,9 +191,6 @@ export const Form = () => {
               </p>
               <p className="product" id="jewellery">
                 Jewellery
-              </p>
-              <p className="product" id="plantsWomen">
-                Plants
               </p>
             </div>
           </div>

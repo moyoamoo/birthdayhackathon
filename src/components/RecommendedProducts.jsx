@@ -3,11 +3,10 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import ProductItem from "./ProductItem";
 import { useState } from "react";
-
-const categories = ["funny"];
+import { selectCategories } from "../redux/birthdaySlice";
 
 const RecommendedProducts = () => {
-  // const categories = useSelector(selectCategories);
+  const categories = useSelector(selectCategories);
   const [products, setProducts] = useState();
 
   if (!categories) {

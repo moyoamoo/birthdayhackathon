@@ -1,10 +1,12 @@
 import React from "react";
 import Countdown from "react-countdown";
 import { unixToDate } from "../utils/utils";
+import { useSelector } from "react-redux";
+import { selectDate, selectName } from "../redux/birthdaySlice";
 
 const CountDownTimer = () => {
-  const date = 1753612830000;
-  const name = "Liam";
+  const date = useSelector(selectDate);
+  const name = useSelector(selectName);
 
   const difference = date - Date.now();
 

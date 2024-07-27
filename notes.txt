@@ -1,0 +1,8 @@
+{
+userName: "", 
+userEmail: "", 
+emailFrequency: sting       //(hourly, daily, or weekly)
+partnersName: "", 
+bdayDate: unix timestamp as a string, 
+products:[]                 //array of strings
+}

@@ -1,23 +1,27 @@
-.form, .section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin: 1em;
+.form,
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1em;
 }
 
 .section {
-    border: 1px solid white;
-    padding: 1em;
-
+  border: 1px solid white;
+  padding: 1em;
 }
 .productListContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.selected {
-    background-color: red;
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
 }

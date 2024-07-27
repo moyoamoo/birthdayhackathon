@@ -19,7 +19,6 @@ export const Form = () => {
   const [womenVisible, setWomenVisible] = useState(false);
 
   const dispatch = useDispatch();
-
   const redirect = useNavigate();
 
   const handleChange = (e) => {

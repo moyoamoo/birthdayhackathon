@@ -12,6 +12,6 @@ export const birthdaySlice = createSlice({
 
 export const { addBirthday } = birthdaySlice.actions;
 
-export const selectBirthday = (state) => state.birthday;
+export const selectBirthday = (state) => state.birthday.birthday;
 
 export default birthdaySlice.reducer;

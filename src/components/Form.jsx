@@ -4,6 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addBirthday } from "../redux/birthdaySlice";
 import { useNavigate } from "react-router-dom";
+import { stringToUnix } from "../utils/utils";
 
 export const Form = () => {
   const [formDetails, setFormDetails] = useState({
@@ -27,9 +28,7 @@ export const Form = () => {
 
   const handleClick = (e) => {
     if (e.target.className === "product") {
-      console.log(e.target.id);
       if (formDetails["products"].includes(e.target.id)) {
-        console.log("eeee");
         const indexOf = formDetails.products.findIndex(
           (product) => product === e.target.id
         );
@@ -38,7 +37,6 @@ export const Form = () => {
         setFormDetails({ ...formDetails, products: _products });
         return;
       } else {
-        console.log("here");
         const _products = formDetails.products;
         _products.push(e.target.id);
         setFormDetails({ ...formDetails, products: _products });
@@ -48,27 +46,20 @@ export const Form = () => {
 
   const handleSubmit = async () => {
     const unixDate = stringToUnix(formDetails.bdayDate);
-
+    console.log(formDetails);
     try {
-      // await axios.post(
-      //   "http://localhost:6001/add_birthday",
-      //   { formDetails },
-      // );
+      await axios.post("http://localhost:6001/add_birthday", { formDetails });
       dispatch(addBirthday({ ...formDetails, bdayDate: unixDate }));
+      console.log(formDetails);
       redirect("/dashboard");
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const addSelected = (e) => {
     e.target.classList.toggle("selected");
-  };
-
-  const stringToUnix = (date) => {
-    let _date = date.split("-");
-    _date = new Date(_date[0], _date[1] - 1, _date[2]);
-    return _date.getTime();
+    formDetails.products.push(e.currentTarget.innerText);
   };
 
   const showProducts = (e) => {
@@ -150,27 +141,27 @@ export const Form = () => {
                 alt="perfume bottle"
                 className="icon"
               />
-              <p className="product" id="perfumeMen"  onClick={addSelected} >
+              <p className="product" id="perfumeMen" onClick={addSelected}>
                 Perfume
               </p>
               <img src="../../sports.png" alt="sports" className="icon" />
-              <p className="product" id="sports" onClick={addSelected} >
+              <p className="product" id="sports" onClick={addSelected}>
                 Sports
               </p>
               <img src="../../laughing.png" alt="funny" className="icon" />
-              <p className="product" id="funny" onClick={addSelected} >
+              <p className="product" id="funny" onClick={addSelected}>
                 Funny
               </p>
               <img src="../../lego.png" alt="lego" className="icon" />
-              <p className="product" id="collectables" onClick={addSelected} >
+              <p className="product" id="collectables" onClick={addSelected}>
                 Toy collectables
               </p>
               <img src="../../wallet.png" alt="wallet" className="icon" />
-              <p className="product" id="wallets"  onClick={addSelected} >
+              <p className="product" id="wallets" onClick={addSelected}>
                 Wallets
               </p>
-              <img src="../../fashion.png" alt="fashion" className="icon"/>
-              <p className="product" id="clothes" onClick={addSelected} >
+              <img src="../../fashion.png" alt="fashion" className="icon" />
+              <p className="product" id="clothes" onClick={addSelected}>
                 Clothes
               </p>
 
@@ -179,7 +170,7 @@ export const Form = () => {
                 alt="tech"
                 className="icon"
               />
-              <p className="product" id="tech" onClick={addSelected} >
+              <p className="product" id="tech" onClick={addSelected}>
                 Tech
               </p>
             </div>
@@ -195,43 +186,43 @@ export const Form = () => {
                 alt="perfume bottle"
                 className="icon"
               />
-              <p className="product" id="perfumeWomen" onClick={addSelected} >
+              <p className="product" id="perfumeWomen" onClick={addSelected}>
                 Perfume
               </p>
 
               <img src="../../flower.png" alt="flowers" className="icon" />
-              <p className="product" id="flowers" onClick={addSelected} >
+              <p className="product" id="flowers" onClick={addSelected}>
                 Flowers
               </p>
 
               <img src="../../cosmetics.png" alt="flowers" className="icon" />
-              <p className="product" id="makeUp" onClick={addSelected} >
+              <p className="product" id="makeUp" onClick={addSelected}>
                 Makeup
               </p>
 
               <img src="../../laughing.png" alt="laughing" className="icon" />
-              <p className="product" id="funnyWomen" onClick={addSelected} >
+              <p className="product" id="funnyWomen" onClick={addSelected}>
                 Funny
               </p>
 
               <img src="../../handbag.png" alt="handbag" className="icon" />
-              <p className="product" id="handbags" onClick={addSelected} >
+              <p className="product" id="handbags" onClick={addSelected}>
                 Handbags
               </p>
 
               <img src="../../high-heels.png" alt="flowers" className="icon" />
-              <p className="product" id="shoes" onClick={addSelected} >
+              <p className="product" id="shoes" onClick={addSelected}>
                 Shoes
               </p>
 
               <img src="../../jewelry.png" alt="jewellery" className="icon" />
-              <p className="product" id="jewellery" onClick={addSelected} >
+              <p className="product" id="jewellery" onClick={addSelected}>
                 Jewellery
               </p>
             </div>
           </div>
         </div>
-        <button onClick={handleSubmit}>submit</button>
+        <button onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   );

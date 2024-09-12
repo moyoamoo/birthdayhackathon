@@ -8,7 +8,9 @@ import { selectCategories } from "../redux/birthdaySlice";
 const RecommendedProducts = () => {
   const categories = useSelector(selectCategories);
   const [products, setProducts] = useState();
-
+  // const categories = [
+  //   "funny", "handbags"
+  // ]
   if (!categories) {
     return;
   }
